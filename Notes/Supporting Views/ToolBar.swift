@@ -9,23 +9,23 @@
 import SwiftUI
 
 struct ToolBar: View {
-	let actionDelete: () -> Void
-	
-	var body: some View {
-		HStack {
-			Button(action: {
-				self.actionDelete()
-			}) {
-				Image(systemName: "trash")
-					.imageScale(.large)
-			}
-			Spacer()
-		}.padding()
-	}
+    let actionDelete: () -> Void
+    
+    var body: some View {
+        HStack {
+            Button(action: {
+                self.actionDelete()
+            }) {
+                Image(systemName: "trash")
+                    .imageScale(.large)
+            }
+            Spacer()
+        }.padding()
+    }
 }
 
 struct ToolBar_Previews: PreviewProvider {
     static var previews: some View {
-		ToolBar(actionDelete: {})
+        ToolBar(actionDelete: {})
     }
 }
