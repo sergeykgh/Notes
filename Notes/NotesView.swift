@@ -25,29 +25,31 @@ struct NotesView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                List (model.notes) { note in
-                    NoteCell(note: note)
-                }
-                .navigationBarTitle(Text("Notes"))
-                .navigationBarItems(trailing: addButton)
-                
-                .alert(isPresented: $model.showError) {
-                    return Alert(title: Text("Error"),
-                                 message: Text(model.errorMessage),
-                                 dismissButton: .default(Text("Ok"), action: {
-                        self.model.showError = false
-                    }))
-                }
-                
-                if self.model.pushed {
-                    NavigationLink(destination: NoteDetailView(isNewNote: true, id: 0), isActive: $model.pushed) {
-                        EmptyView()
+        LoadingView(isShowing: $model.listActivityIndicatorAnimating) {
+            NavigationView {
+                VStack {
+                    List (self.model.notes) { note in
+                        NoteCell(note: note)
                     }
+                    .navigationBarTitle(Text("Notes"))
+                    .navigationBarItems(trailing: self.addButton)
+                    
+                    .alert(isPresented: self.$model.showError) {
+                        return Alert(title: Text("Error"),
+                                     message: Text(self.model.errorMessage),
+                                     dismissButton: .default(Text("Ok"), action: {
+                            self.model.showError = false
+                        }))
+                    }
+                    
+                    if self.model.pushed {
+                        NavigationLink(destination: NoteDetailView(isNewNote: true, id: 0), isActive: self.$model.pushed) {
+                            EmptyView()
+                        }
+                    }
+                }.onAppear() {
+                    self.model.loadNotes()
                 }
-            }.onAppear() {
-                self.model.loadNotes()
             }
         }
     }

@@ -46,43 +46,44 @@ struct NoteDetailView: View {
     }
 
     var body: some View {
-        VStack {
-            EditableText(text: $model.note.title, fontSize: 18, showKeyboard: isNewNote)
-                .padding(4)
-                
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(
-                leading:
-                    BackButton(label: "Notes") {
-                        self.dismiss()
-                    },
-                trailing:
-                    Button(action: {
-                        self.donePressed()
-                    }) {
-                        Text("Done")
-                    }
-            )
-                
-            .alert(isPresented: $model.showError) {
-                return Alert(title: Text("Error"),
-                             message: Text(model.errorMessage),
-                             dismissButton: .default(Text("Ok"), action: {
+        LoadingView(isShowing: $model.detailActivityIndicatorAnimating) {
+            VStack {
+                EditableText(text: self.$model.note.title, fontSize: 18, showKeyboard: self.isNewNote)
+                    .padding(4)
+                    
+                .navigationBarBackButtonHidden(true)
+                .navigationBarItems(
+                    leading:
+                        BackButton(label: "Notes") {
+                            self.dismiss()
+                        },
+                    trailing:
+                        Button(action: {
+                            self.donePressed()
+                        }) {
+                            Text("Done")
+                        }
+                )
+                    
+                .alert(isPresented: self.$model.showError) {
+                    return Alert(title: Text("Error"),
+                                 message: Text(self.model.errorMessage),
+                                 dismissButton: .default(Text("Ok"), action: {
 
-                    self.model.showError = false
-                }))
-            }
-            
-            if !isNewNote {
-                ToolBar(actionDelete: deletePressed)
-            }
-        }.onAppear() {
-            self.model.note.title = ""
-            if !self.isNewNote {
-                self.model.loadNote(id: self.id)
+                        self.model.showError = false
+                    }))
+                }
+                
+                if !self.isNewNote {
+                    ToolBar(actionDelete: self.deletePressed)
+                }
+            }.onAppear() {
+                self.model.note.title = ""
+                if !self.isNewNote {
+                    self.model.loadNote(id: self.id)
+                }
             }
         }
-        
     }
 }
 

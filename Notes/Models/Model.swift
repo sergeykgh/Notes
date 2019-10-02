@@ -9,10 +9,12 @@
 import Foundation
 
 class Model: ObservableObject {
-    @Published var pushed = false;
-    @Published var notes:[Note] = [];
-    @Published var note:Note = Note(id: 0, title: "");
-    @Published var showError:Bool = false;
+    @Published var pushed: Bool = false;
+    @Published var notes: [Note] = [];
+    @Published var note: Note = Note(id: 0, title: "");
+    @Published var showError: Bool = false;
+    @Published var listActivityIndicatorAnimating: Bool = false;
+    @Published var detailActivityIndicatorAnimating: Bool = false;
     var errorMessage:String = "";
     
     func publishError(error:String) {
@@ -22,8 +24,34 @@ class Model: ObservableObject {
         }
     }
     
+    func startListActivityIndicatorAnimating() {
+           DispatchQueue.main.async {
+               self.listActivityIndicatorAnimating = true
+           }
+    }
+    
+    func stopListActivityIndicatorAnimating() {
+           DispatchQueue.main.async {
+               self.listActivityIndicatorAnimating = false
+           }
+    }
+    
+    func startDetailActivityIndicatorAnimating() {
+           DispatchQueue.main.async {
+               self.detailActivityIndicatorAnimating = true
+           }
+    }
+    
+    func stopDetailActivityIndicatorAnimating() {
+           DispatchQueue.main.async {
+               self.detailActivityIndicatorAnimating = false
+           }
+    }
+    
     func loadNotes() {
+        startListActivityIndicatorAnimating()
         NotesAPI.getNotes() { (notes, error) in
+            self.stopListActivityIndicatorAnimating()
             if notes != nil {
                 DispatchQueue.main.async {
                     self.notes = notes!
@@ -38,7 +66,9 @@ class Model: ObservableObject {
     }
     
     func loadNote(id: Int) {
+        startDetailActivityIndicatorAnimating()
         NotesAPI.getNote(id: id) { (note, error) in
+            self.stopDetailActivityIndicatorAnimating()
             if note != nil {
                 DispatchQueue.main.async {
                     self.note = note!

@@ -21,6 +21,7 @@
 		A5C7DE51233FF8D500C05933 /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C7DE50233FF8D500C05933 /* NoteDetailView.swift */; };
 		A5C7DE53234020F800C05933 /* EditableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C7DE52234020F800C05933 /* EditableText.swift */; };
 		A5DB99FD2340FB06003A17D6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB99FC2340FB06003A17D6 /* Model.swift */; };
+		A5F1C54B234477F900AAAF9B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F1C54A234477F900AAAF9B /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		A5C7DE50233FF8D500C05933 /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		A5C7DE52234020F800C05933 /* EditableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableText.swift; sourceTree = "<group>"; usesTabs = 0; };
 		A5DB99FC2340FB06003A17D6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; usesTabs = 0; };
+		A5F1C54A234477F900AAAF9B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				A5C7DE52234020F800C05933 /* EditableText.swift */,
 				A563A74E2343807300F5A559 /* ToolBar.swift */,
+				A5F1C54A234477F900AAAF9B /* LoadingView.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				A5DB99FD2340FB06003A17D6 /* Model.swift in Sources */,
 				A5C7DE2D233FF2AA00C05933 /* AppDelegate.swift in Sources */,
 				A563A7522343826200F5A559 /* NotesAPI.swift in Sources */,
+				A5F1C54B234477F900AAAF9B /* LoadingView.swift in Sources */,
 				A5C7DE51233FF8D500C05933 /* NoteDetailView.swift in Sources */,
 				A563A74F2343807300F5A559 /* ToolBar.swift in Sources */,
 				A5C7DE2F233FF2AA00C05933 /* SceneDelegate.swift in Sources */,
