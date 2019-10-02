@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct LoadingView<Content>: View where Content: View {
-
     @Binding var isShowing: Bool
     var content: () -> Content
 
@@ -35,11 +34,9 @@ struct LoadingView<Content>: View where Content: View {
             }
         }
     }
-
 }
 
 struct ActivityIndicator: UIViewRepresentable {
-
     @Binding var isAnimating: Bool
     let style: UIActivityIndicatorView.Style
 
